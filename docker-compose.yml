@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: nest-api
+    ports:
+      - "4004:4000"
+    restart: always
+    healthcheck:
+      interval: 30s
+      timeout: 10s
+      retries: 3
