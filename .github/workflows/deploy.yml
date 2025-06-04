@@ -10,11 +10,10 @@ jobs:
     steps:
       - name: Deploy to server
         env:
-          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          echo "$SSH_KEY" > key.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
           chmod 600 key.pem
           ssh -i key.pem -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST '
             if ! command -v docker-compose &> /dev/null; then
